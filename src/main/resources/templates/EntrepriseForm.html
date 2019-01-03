@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<title>inscription</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="../static/login/images/icons/favicon.ico" th:href="@{/login/images/icons/favicon.ico}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/vendor/bootstrap/css/bootstrap.min.css" th:href="@{/login/vendor/bootstrap/css/bootstrap.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css" th:href="@{/login/fonts/font-awesome-4.7.0/css/font-awesome.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css" th:href="@{/login/fonts/Linearicons-Free-v1.0.0/icon-font.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/fonts/iconic/css/material-design-iconic-font.min.css" th:href="@{/login/fonts/iconic/css/material-design-iconic-font.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/vendor/animate/animate.css" th:href="@{/login/vendor/animate/animate.css}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../static/login/vendor/css-hamburgers/hamburgers.min.css" th:href="@{/login/vendor/css-hamburgers/hamburgers.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/vendor/animsition/css/animsition.min.css" th:href="@{/login/vendor/animsition/css/animsition.min.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/vendor/select2/select2.min.css" th:href="@{/login/vendor/select2/select2.min.css}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="../static/login/vendor/daterangepicker/daterangepicker.css" th:href="@{/login/vendor/daterangepicker/daterangepicker.css}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="../static/login/css/util.css" th:href="@{/login/css/util.css}">
+	<link rel="stylesheet" type="text/css" href="../static/login/css/main.css" th:href="@{/login/css/main.css}">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!--===============================================================================================-->
+</head>
+<body style="background-color: #999999;">
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="login100-more" style="background-image: url('/login/images/bg-01.jpg');"></div>
+
+			<div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
+				<form class="login100-form validate-form" th:action="@{EntrepriseAdd}" method="post" enctype="multipart/form-data" >
+					<span class="login100-form-title p-b-59">
+					Inscription
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate="Nom de l'entreprise is required">
+						<span class="label-input100"> Nom de l'entreprise</span>
+						<input class="input100" type="text" id="name" name="nomSociete" placeholder="Nom de l'entreprise...">
+						<span class="focus-input100"></span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="adress is required">
+						<span class="label-input100"> adress</span>
+						<input class="input100" type="text" name="adress" placeholder="adress...">
+						<span class="focus-input100"></span>
+					</div>
+					 <div class="wrap-input100 validate-input" data-validate="adress is required">
+						<span class="label-input100"> gender</span><br><br>
+						<input  type="radio" name="gender" value="homme" ><span class="label-input100">homme</span>
+						<input  type="radio" name="gender" value="femme" ><span class="label-input100">femme</span>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate="telephone is required">
+						<span class="label-input100"> telephone</span>
+						<input class="input100" type="text" name="telephone" placeholder="telephone...">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<span class="label-input100">Email</span>
+						<input class="input100" type="text" name="mail" id="Email" placeholder="Email addess...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Username is required">
+						<span class="label-input100">identifiant</span>
+						<input class="input100" type="text" name="username" id="username" placeholder="identifiant...">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<span class="label-input100">mot de passe</span>
+						<input class="input100" type="password" name="password" id="password" placeholder="*************">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Repeat Password is required">
+						<span class="label-input100">Confirmer votre mot de passe</span>
+						<input class="input100" type="password" name="passwordConf" placeholder="*************">
+						<span class="focus-input100"></span>
+					</div>
+                     <div class="wrap-input100 validate-input" data-validate="website is required">
+						<span class="label-input100"> site web </span>
+						<input class="input100" type="text" name="website" placeholder="site web...">
+						<span class="focus-input100"></span>
+					</div>
+					 <div class="wrap-input100 validate-input" data-validate="description is required">
+						<span class="label-input100"> description de la societe</span><br>
+						<textarea  class="input100"  name="description" id="description" placeholder="description..."></textarea>
+						<span class="focus-input100"></span>
+					</div>
+					   <div class="wrap-input100 validate-input" data-validate="image is required">
+						<span class="label-input100"> image de l'entreprise</span>
+						<input class="input100" type="file" id="file" name="EntrepriseImage" accept="image/x-png,image/gif,image/jpeg" multiple="multiple">
+                    
+						<span class="focus-input100"></span>
+					</div>                    
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" onclick="return validateForm();">
+								inscrire
+							</button>
+						</div>
+
+						<a th:href="@{/Employe/index}" class="dis-block txt3 hov1 p-r-30 p-t-10 p-b-10 p-l-30">
+							retourner 
+							<i class="fa fa-long-arrow-right m-l-5"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script >
+ 
+ function validateForm(){
+	 var name     = document.getElementById('name');
+	 var adress     = document.getElementById('adress');
+	 var Email = document.getElementById('Email');
+	 var username = document.getElementById('username');
+	 var password = document.getElementById('password');
+	 var description = document.getElementById('description');
+	// var file     = document.getElementById('file');
+/*  if(name.value == ""){
+	 swal("Oops!", "Entrer le nom  du societe ", "error");
+	 return false;
+ }
+ if(adress.value == ""){
+	 swal("Oops!", "Entrer adress du societe", "error");
+	 return false;
+ }
+ 
+ if(Email.value == ""){
+	 swal("Oops!", "Entrer email du societe", "error");
+	 return false;
+ }
+ if(username.value == ""){
+	 swal("Oops!", "Entrer votre identifiant", "error");
+	 return false;
+ }
+ if(password.value == ""){
+	 swal("Oops!", "Entrer votre mot de passe ", "error");
+	 return false;
+ }
+ if(description.value == ""){
+	 swal("Oops!", "Entrer description du societe", "error");
+	 return false;
+ } */
+ if(name !== null && name !== '' ) 
+ { swal("Good job!", "You clicked the button!", "success");
+   return true ;
+ }
+ if(adress !== null && adress !== ''){
+	 swal("Good job!", "You clicked the button!", "success");
+	 return true ;
+ }
+ if(Email !== null && Email !== '' ) 
+ { swal("Good job!", "You clicked the button!", "success");
+   return true ;
+ }
+ if(username !== null && username !== ''){
+	 swal("Good job!", "You clicked the button!", "success");
+	 return true ;
+ }
+ if(password !== null && password !== '' ) 
+ { swal("Good job!", "You clicked the button!", "success");
+ return true ;
+}
+if(description !== null && description !== ''){
+	 swal("Good job!", "You clicked the button!", "success");
+	 return true ;
+}
+ }
+
+</script>
+	
+<!--===============================================================================================-->
+	<script src="../login/vendor/jquery/jquery-3.2.1.min.js" th:href="@{/login/vendor/jquery/jquery-3.2.1.min.js}"></script>
+<!--===============================================================================================-->
+	<script src="../login/vendor/animsition/js/animsition.min.js" th:href="@{/login/vendor/animsition/js/animsition.min.js}"></script>
+<!--===============================================================================================-->
+	<script src="../login/vendor/bootstrap/js/popper.js" th:href="@{/login/vendor/bootstrap/js/popper.js}"></script>
+	<script src="../login/vendor/bootstrap/js/bootstrap.min.js" th:href="@{/login/bootstrap/js/bootstrap.min.js}"></script>
+<!--===============================================================================================-->
+	<script src="../login/vendor/select2/select2.min.js" th:href="@{/login/vendor/select2/select2.min.js}"></script>
+<!--===============================================================================================-->
+	<script src="../login/vendor/daterangepicker/moment.min.js" th:href="@{/login/vendor/daterangepicker/moment.min.js}"></script>
+	<script src="../login/vendor/daterangepicker/daterangepicker.js" th:href="@{/login/vendor/daterangepicker/daterangepicker.js}"></script>
+<!--===============================================================================================-->
+	<script src="../login/vendor/countdowntime/countdowntime.js" th:href="@{/login/vendor/countdowntime/countdowntime.js}"></script>
+<!--===============================================================================================-->
+	<script src="../login/js/main.js" th:href="@{/login/js/main.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>TheEvent - Bootstrap Event Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+    <!-- Favicons -->
+  <link  rel="icon" href="../static/ClientSide/img/favicon.png" th:href="@{/ClientSide/img/favicon.png}">
+  <link href="../static/ClientSide/img/apple-touch-icon.png" rel="apple-touch-icon" th:href="@{/ClientSide/img/apple-touch-icon.png}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="../static/ClientSide/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/bootstrap/css/bootstrap.min.css}">
+
+  <!-- Libraries CSS Files -->
+  <link href="../static/ClientSide/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/font-awesome/css/font-awesome.min.css}">
+  <link href="../static/ClientSide/lib/animate/animate.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/animate/animate.min.css}">
+  <link href="../static/ClientSide/lib/venobox/venobox.css" rel="stylesheet" th:href="@{/ClientSide/lib/venobox/venobox.css}">
+  <link href="../static/ClientSide/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/owlcarousel/assets/owl.carousel.min.css}">
+
+  <!-- Main Stylesheet File -->
+  <link href="../static/ClientSide/css/style.css" rel="stylesheet" th:href="@{/ClientSide/css/style.css}">
+
+  <!-- =======================================================
+    Theme Name: TheEvent
+    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+  <style type="text/css">
+  #header {
+    background: rgba(6, 12, 34, 0.98);
+   
+}
+  .section-header{
+  margin-top: 50px;
+  }
+  #hotels .hotel-img img {
+    
+    width: 43.2em;
+    height: 10.5em;
+}
+  </style>
+
+  <!-- =======================================================
+    Theme Name: TheEvent
+    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a href="#intro" class="scrollto"><img src="/ClientSide/img/logo.png" alt="" title=""></a>
+      </div>
+
+     <nav id="nav-menu-container">
+        <ul class="nav-menu">
+           <li class="menu-active"><a th:href="@{/Employe/index}">Acceuil</a></li>
+          <li><a th:href="@{/Employe/allEntreprise}">les entreprises</a></li>
+          <li th:if="${currentUser.class.simpleName=='clients' && isConnected  eq true}"><a th:href="@{/Client/clientDemande}">Vos demandes</a></li> 
+          <li><a th:href="@{/Employe/Service}" th:if="${currentUser.class.simpleName=='employe' &&  isConnected  eq true}">Les services</a></li>
+          <li><a th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}" th:href="@{/Employe/Reparation}">Les reparations</a></li>
+          <li><a th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}" th:href="@{/Employe/clientDemande}">les demandes</a></li>
+        
+            <li th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}"><a th:href="@{/Employe/SendEmail}">Contact nous</a></li>
+             <li th:if="${currentUser.class.simpleName=='clients' && isConnected  eq true}"><a th:href="@{/Client/SendEmail}">Contact nous</a></li>
+          <li class="buy-tickets"><a href="" data-toggle="modal" data-target="#myModal" th:if="${isConnected  eq false}">Inscription</a></li>
+           <li class="buy-tickets"><a th:href="@{logout}" th:if="${isConnected  eq true}">Déconnexion</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  
+  
+
+  <main id="main">
+
+    
+    <!--==========================
+      Form Section
+    ============================-->
+   
+    <section id="speakers" class="wow fadeInUp">
+    	 
+      <div class="container">
+      <form th:action="@{Service}" method="get" style="margin-top: 3.2em;">
+     
+     <input name="motCle" type="text" placeholder="titre">
+     <button type="submit" class="btn btn-danger">chercher</button>
+     </form>
+        <div class="section-header">
+          <h2>la liste des categories disponible</h2>
+        </div>
+
+         <table class="table">
+     <tr>
+     <th>Titre</th><th>Description</th>
+     </tr>
+     <tr th:each="e:${listCategorie}">
+     
+     <td ><a th:href="@{ViewContent(id=${e.id_categorie})}"><span th:text="${e.name}" data-toggle="modal" data-target="#myModal"></span></a></td>
+     <td th:text="${e.description}"></td>
+    <!--  <td>
+      
+       <a th:href="@{supprimerCatService(id=${e.id_categorie})}">  
+       <i class="fa fa-trash"></i></a>
+     </td> -->
+     </tr>
+     </table>
+      
+</div>
+    </section>
+
+   <section>
+   	<div class="text-lg mt-lg">
+               
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalReparation" style="margin-left: 345px; margin-bottom: 30px;">ajouter nouveu categorie</button> 
+            
+         </div>
+   </section>
+
+    <section id="speakers" class="wow fadeInUp">
+    	 
+      <div class="container">
+      <form th:action="@{Service}" method="get" >
+    
+     <input name="motCle" type="text" placeholder="titre">
+     <button type="submit" class="btn btn-danger">chercher</button>
+     </form>
+        <div class="section-header">
+          <h2>la liste des services</h2>
+        </div>
+
+        <table class="table">
+     <tr>
+     <th>titre</th><th>description</th><th>categorie</th><th>service image</th>
+     </tr>
+     <tr th:each="e:${listService}">
+     
+     <td ><a th:href="@{ViewContent(id=${e.id})}"><span th:text="${e.titre}" data-toggle="modal" data-target="#myModal"></span></a></td>
+     <td th:text="${e.description}"></td>
+      <td th:text="${e.Categorie_services.name}"></td>
+        <td><img class="img" th:src="@{getphotoService(id=${e.id})}" width="100" height="100" /></td> <td>
+      <td>
+       <a th:href="@{editService(id=${e.id})}">  
+         <i class="fa fa-pencil-square-o"></i> </a>
+       <a th:href="@{supprimerService(id=${e.id})}">  
+       <i class="fa fa-trash"></i></a>
+     </td>
+     </tr>
+     </table>
+      </div>
+
+    </section>
+
+   <section>
+   	<div class="text-lg mt-lg">
+              
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalService" style="margin-left: 345px; margin-bottom: 30px;">ajouter nouveu service</button> 
+           
+         </div>
+   </section>
+
+  </main>
+
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+           <div class="col-lg-6 col-md-6 footer-info">
+            <img src="/ClientSide/img/logo.png" alt="TheEvenet">
+           <p>Filiale de Veolia Maroc, nous sommes un opérateur de services publics en charge depuis 2002 de la distribution d'eau potable et d'électricité, ainsi que de la collecte et du traitement des eaux usées pour 1,8 millions d’habitants de la région de Tanger-Tétouan</p>
+            </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>menu</h4>
+            <ul>
+             <li ><i class="fa fa-angle-right"></i><a href="#intro">Home</a></li>
+          <li ><i class="fa fa-angle-right"></i><a th:href="@{/Employe/allEntreprise}">les entreprises</a></li>
+           <li ><i class="fa fa-angle-right"></i><a th:href="@{/Employe/Service}" th:if="${isConnected  eq true}">les Services</a></li>
+            <li ><i class="fa fa-angle-right"></i><a th:if="${isConnected  eq true}" th:href="@{/Employe/Reparation}">les Reparations</a></li>
+            <li ><i class="fa fa-angle-right"></i><a th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}" th:href="@{/Employe/clientDemande}">les demandes</a></li>
+          
+            </ul>
+          </div>
+
+
+         <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Av. Abdelkhalak Torres, rue Chéfchaouen  <br>           
+                Tetouan<br>
+              <strong>Phone:+1 5589 55488 55</strong> <br>
+              <strong>twitter:</strong>Amendis@OfficielAmendis
+              <br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>amendis</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
+        -->
+     
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Inscription</h4> -->
+        </div>
+        <div class="modal-body">
+          <p>
+          	<div class="row signup">
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+		<a th:href="@{/Client/cLientInscription}">
+			<div class="widget blue-bg p-lg text-center">
+				<div class="m-b-md">
+				    <i class="fa fa-users fa-5x"></i>
+				    <h3 class="font-bold no-margins">
+				        clients				    </h3>
+				</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-xs-12 col-sm-5">
+		<a th:href="@{/Employe/Entrepise}">
+			<div class="widget red-bg p-lg text-center">
+				<div class="m-b-md">
+				    <i class="fa fa-briefcase fa-5x"></i>
+				    <h3 class="font-bold">
+				        Entreprise				    </h3>
+				</div>
+			</div>
+		</a>
+	</div>
+	</div>
+	<a th:href=@{/Employe/login} style="margin-right: 15px;">Déjà membre ? Connectez-vous</a>
+
+        </div></div></div></div>
+
+
+
+        <div class="modal fade" id="modalReparation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Saisie nouveau categorie :</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="login100-form validate-form" th:action="@{formSaveCategore}" method="post" enctype="multipart/form-data" >
+      <div class="modal-body mx-3">
+       
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Titre</label>
+          <input type="text" id="orangeForm-name" name="name" class="form-control validate">
+          
+        </div>
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Description</label>
+          <input type="text" name="description" id="orangeForm-email" class="form-control validate">
+        </div>
+     
+      </div>
+     
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-deep-orange">Ajouter</button>
+      </div>
+       </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+ <div class="modal fade" id="modalService" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Saisie nouveau service  :</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="login100-form validate-form" th:action="@{formSaveService}" method="post" enctype="multipart/form-data" >
+      <div class="modal-body mx-3">
+       
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="orangeForm-name">Titre</label>
+          <input type="text" id="orangeForm-name" name="titre" class="form-control validate">
+          
+        </div>
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Description</label>
+          <input type="text" name="description" id="orangeForm-email" class="form-control validate">
+        </div>
+       <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">Categorie</label>
+          <select name="id_categorie" class="form-control validate">
+     					 <option th:each="t:${listALLCategorie}"  th:text="${t.name}" th:value="${t.id_categorie}"></option>
+    				 </select>
+        </div>
+        <div class="md-form mb-5">
+          <label data-error="wrong" data-success="right" for="orangeForm-email">photo</label>
+        <input  class="form-control validate" type="file" id="file" name="serviceImage"  multiple="multiple">
+           </div>         
+        
+      </div>
+     
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-deep-orange">Ajouter</button>
+      </div>
+       </form>
+    </div>
+  </div>
+</div>
+
+ <script src="../ClientSide/lib/jquery/jquery.min.js"  th:href="@{/ClientSide/lib/jquery/jquery.min.js}"></script>
+			
+  <script src="../ClientSide/lib/jquery/jquery-migrate.min.js" th:href="@{/ClientSide/lib/jquery/jquery-migrate.min.js}"></script>
+  <script src="../ClientSide/lib/bootstrap/js/bootstrap.bundle.min.js" th:href="@{/ClientSide/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script src="../ClientSide/lib/easing/easing.min.js" th:href="@{/ClientSide/lib/easing/easing.min.js}"></script>
+  <script src="../ClientSide/lib/superfish/hoverIntent.js" th:href="@{/ClientSide/lib/superfish/hoverIntent.js}"></script>
+  <script src="../ClientSide/lib/superfish/superfish.min.js" th:href="@{/ClientSide/lib/superfish/superfish.min.js}"></script>
+  <script src="../ClientSide/lib/wow/wow.min.js" th:href="@{/ClientSide/lib/wow/wow.min.js}"></script>
+  <script src="../ClientSide/lib/venobox/venobox.min.js" th:href="@{/ClientSide/lib/venobox/venobox.min.js}"></script>
+  <script src="../ClientSide/lib/owlcarousel/owl.carousel.min.js" th:href="@{/ClientSide/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="../ClientSide/contactform/contactform.js" th:href="@{/ClientSide/contactform/contactform.js}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="../ClientSide/js/main.js" th:href="@{/ClientSide/js/main.js}"></script>
+</body>
+
+</html>

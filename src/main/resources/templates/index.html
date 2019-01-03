@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <title>Amandis</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link  rel="icon" href="../static/ClientSide/img/favicon.png" th:href="@{/ClientSide/img/favicon.png}">
+  <link href="../static/ClientSide/img/apple-touch-icon.png" rel="apple-touch-icon" th:href="@{/ClientSide/img/apple-touch-icon.png}">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="../static/ClientSide/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/bootstrap/css/bootstrap.min.css}">
+
+  <!-- Libraries CSS Files -->
+  <link href="../static/ClientSide/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/font-awesome/css/font-awesome.min.css}">
+  <link href="../static/ClientSide/lib/animate/animate.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/animate/animate.min.css}">
+  <link href="../static/ClientSide/lib/venobox/venobox.css" rel="stylesheet" th:href="@{/ClientSide/lib/venobox/venobox.css}">
+  <link href="../static/ClientSide/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" th:href="@{/ClientSide/lib/owlcarousel/assets/owl.carousel.min.css}">
+
+  <!-- Main Stylesheet File -->
+  <link href="../static/ClientSide/css/style.css" rel="stylesheet" th:href="@{/ClientSide/css/style.css}">
+
+  <!-- =======================================================
+    Theme Name: TheEvent
+    Theme URL: https://bootstrapmade.com/theevent-conference-event-bootstrap-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+  <style type="text/css">
+  #hotels .hotel-img img {
+    
+    width: 43.2em;
+    height: 10.5em;
+}
+  </style>
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left" >
+        <!-- Uncomment below if you prefer to use a text logo -->
+        <!-- <h1><a href="#main">C<span>o</span>nf</a></h1>-->
+        <a href="#intro" class="scrollto"><img src="/ClientSide/img/logo.png" alt="" title="" style="margin-left: -8.8em;"></a>
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="#intro">Home</a></li>
+          <li><a href="#about">à propos de nous</a></li>
+          <li><a href="#speakers">notre Services</a></li>
+          <li><a href="#hotels">les entreprises</a></li>
+           <li><a th:href="@{/Employe/Service}" th:if="${isConnected  eq true}">les Service</a></li>
+            <li><a th:if="${isConnected  eq true}" th:href="@{/Employe/Reparation}">les Reparation</a></li>
+            <li><a th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}" th:href="@{/Employe/clientDemande}">les demandes</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          
+            <li th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}"><a th:href="@{/Employe/SendEmail}">Contact nous</a></li>
+          
+          <li class="buy-tickets" style=" margin-left: 0.2em;"><a href="" data-toggle="modal" data-target="#myModal" th:if="${isConnected  eq false}">Inscription</a></li>
+           <li class="buy-tickets" style=" margin-left: 0.2em;"><a th:href="@{logout}" th:if="${isConnected  eq true}">Déconnexion</a></li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+    <div class="intro-container wow fadeIn">
+      <h1 class="mb-4 pb-0">Journée de la femme<br><span>chez</span> Amendis</h1>
+      <a href="https://www.youtube.com/watch?v=W0yzB5T-TIs" class="venobox play-btn mb-4" data-vbtype="video"
+        data-autoplay="true"></a>
+      <a href="#about" class="about-btn scrollto">à propos de la société</a>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!--==========================
+      About Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <h2>à propos de la société</h2>
+            <p>Filiale de Veolia Maroc, nous sommes un opérateur de services publics en charge depuis 2002 de la distribution d'eau potable et d'électricité, ainsi que de la collecte et du traitement des eaux usées pour 1,8 millions d’habitants de la région de Tanger-Tétouan</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Le mot du Directeur Général</h3>
+            <p>j’ai l’honneur et le plaisir de vous présenter Amendis dans sa nouvelle configuration ‘connectée’: un nouveau site institutionnel, l’agence commerciale en ligne, ses comptes Twitter, Facebook ainsi que sa chaine Youtube.
+								Ces outils, qui viennent renforcer nos différents canaux de services : Centre d’appels, Agences commerciales, Equipes techniques… ont un seul objectif : mieux vous servir conformément à notre slogan : ‘A votre service au Quotidien 7/7’. </p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Nos engagements</h3>
+            <p>Dans l'optique d'assurer de bonnes pratiques professionnelles, de satisfaire les exigences légales et réglementaires en vigueur et afin de maîtriser la relation avec les clients en allant au-devant de leurs besoins explicites, Amendis s'est engagé à respecter des conditions strictes en matière de sécurité, de santé et de protection de l’environnement. A cet effet, notre système de management est basé sur les référentiels ISO 9001, ISO 14001 et OHSAS 18001 respecté par l’ensemble du personnel et la direction générale.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--==========================
+      Speakers Section
+    ============================-->
+    <section id="speakers" class="wow fadeInUp">
+      <div class="container">
+        <div class="section-header">
+          <h2>les services</h2>
+          
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6 col-md-6" th:each="e:${adminService}">
+            <div class="speaker">
+           <img th:src="@{getphotoService(id=${e.id})}" alt="Speaker 1" class="img-fluid" style="width: 34.2em;">
+              
+              <div class="details">
+                <h3><a th:href="@{ServiceContent(id=${e.id})}" th:text="${e.Categorie_services.name}"  ></a></h3>
+                <p  th:text="${e.titre}"></p>
+                <div class="social">
+                 
+                </div>
+              </div>
+            </div>
+             
+          </div>
+          
+          
+        </div>
+      </div>
+
+    </section>
+
+    <!--==========================
+      Schedule Section
+    ============================-->
+
+
+    
+
+    <!--==========================
+      Hotels Section
+    ============================-->
+    <section id="hotels" class="section-with-bg wow fadeInUp">
+
+      <div class="container">
+        <div class="section-header">
+          <h2>les entreprise</h2>
+          </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6" th:each="e:${lastEntreprise}">
+            <div class="hotel">
+              <div class="hotel-img">
+                <img th:src="@{getphoto(id=${e.code})}" alt="Hotel 1" class="img-fluid">
+              </div>
+            <h3 > <a th:href="@{/Employe/allEntreprise}" th:text="${e.nomSociate}"> </a></h3>
+            </div>
+          </div>
+
+         
+
+        </div>
+      </div>
+
+    </section>
+
+    <!--==========================
+      Gallery Section
+    ============================-->
+    <section id="gallery" class="wow fadeInUp">
+
+      <div class="container">
+        <div class="section-header">
+          <h2>Gallery</h2>
+         
+        </div>
+      </div>
+
+      <div class="owl-carousel gallery-carousel" >
+        <a href="/ClientSide/img/2018.jpg" class="venobox" data-gall="gallery-carousel"><img style="width: 275.778px;height: 220px" src="/ClientSide/img/2018.jpg" alt=""></a>
+        <a href="/ClientSide/img/ima.jpg" class="venobox" data-gall="gallery-carousel"><img style="width: 275.778px;height: 220px" src="/ClientSide/img/ima.jpg" alt=""></a>
+        <a href="/ClientSide/img/img2.jpg" class="venobox" data-gall="gallery-carousel"><img  style="width: 275.778px;height: 220px"src="/ClientSide/img/img2.jpg" alt=""></a>
+        <a href="/ClientSide/img/img3.jpg" class="venobox" data-gall="gallery-carousel"><img  style="width: 275.778px;height: 220px" src="/ClientSide/img/img3.jpg" alt=""></a>
+        <a href="/ClientSide/img/img.jpg" class="venobox" data-gall="gallery-carousel"><img  style="width: 275.778px;height: 220px" src="/ClientSide/img/img.jpg" alt=""></a>
+        <a href="/ClientSide/img/Amendis_Certification.png" class="venobox" data-gall="gallery-carousel"><img style="width: 275.778px;height: 220px" src="/ClientSide/img/Amendis_Certification.png" alt=""></a>
+        <a href="/ClientSide/img/amend.jpg" class="venobox" data-gall="gallery-carousel"><img style="width: 275.778px;height: 220px" src="/ClientSide/img/amend.jpg" alt=""></a>
+        <a href="/ClientSide/img/jz.jpg" class="venobox" data-gall="gallery-carousel"><img style="width: 275.778px;height: 220px" src="/ClientSide/img/jz.jpg" alt=""></a>
+      </div>
+
+    </section>
+
+   
+
+  
+
+    
+
+  </main>
+
+
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-6 col-md-6 footer-info">
+            <img src="/ClientSide/img/logo.png" alt="TheEvenet">
+           <p>Filiale de Veolia Maroc, nous sommes un opérateur de services publics en charge depuis 2002 de la distribution d'eau potable et d'électricité, ainsi que de la collecte et du traitement des eaux usées pour 1,8 millions d’habitants de la région de Tanger-Tétouan</p>
+            </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>menu</h4>
+            <ul>
+             <li ><i class="fa fa-angle-right"></i><a href="#intro">Home</a></li>
+          <li ><i class="fa fa-angle-right"></i><a th:href="@{/Employe/allEntreprise}">les entreprises</a></li>
+           <li th:if="${isConnected  eq true}" ><i class="fa fa-angle-right"></i><a th:href="@{/Employe/Service}" >les Services</a></li>
+            <li th:if="${isConnected  eq true}"><i class="fa fa-angle-right"></i><a  th:href="@{/Employe/Reparation}">les Reparations</a></li>
+            <li th:if="${currentUser.class.simpleName=='employe' && isConnected  eq true}"><i class="fa fa-angle-right"></i><a  th:href="@{/Employe/clientDemande}">les demandes</a></li>
+          
+            </ul>
+          </div>
+
+          
+
+         
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Av. Abdelkhalak Torres, rue Chéfchaouen  <br>           
+                Tetouan<br>
+              <strong>Phone:+1 5589 55488 55</strong> <br>
+              <strong>twitter:</strong>Amendis@OfficielAmendis
+              <br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>amendis</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=TheEvent
+        -->
+     
+      </div>
+    </div>
+  </footer><!-- #footer -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Inscription</h4> -->
+        </div>
+        <div class="modal-body">
+          <p>
+          	<div class="row signup">
+        <div class="col-xs-12 col-sm-5 col-sm-offset-1">
+		<a th:href="@{/Client/cLientInscription}">
+			<div class="widget blue-bg p-lg text-center">
+				<div class="m-b-md">
+				     <i class="fa fa-users fa-5x" style="margin-left: 35px;"></i>
+				    <h3 class="font-bold no-margins" style="margin-left: 35px">
+				        clients				    </h3>
+				</div>
+			</div>
+		</a>
+	</div>
+	<div class="col-xs-12 col-sm-5">
+		<a th:href="@{/Employe/Entrepise}">
+			<div class="widget red-bg p-lg text-center">
+				<div class="m-b-md">
+				     <i class="fa fa-briefcase fa-5x" style="margin-left: 115px"></i>
+				    <h3 class="font-bold" style="margin-left: 89px;">
+				        Entreprise				    </h3>
+				</div>
+			</div>
+		</a>
+	</div>
+	</div>
+	<a th:href=@{/Employe/login} style="margin-right: 15px;">Déjà membre ? Connectez-vous</a>
+
+        </div></div></div></div>
+
+  <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="../ClientSide/lib/jquery/jquery.min.js"  th:href="@{/ClientSide/lib/jquery/jquery.min.js}"></script>
+  		
+  <script src="../ClientSide/lib/jquery/jquery-migrate.min.js" th:href="@{/ClientSide/lib/jquery/jquery-migrate.min.js}"></script>
+  <script src="../ClientSide/lib/bootstrap/js/bootstrap.bundle.min.js" th:href="@{/ClientSide/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script src="../ClientSide/lib/easing/easing.min.js" th:href="@{/ClientSide/lib/easing/easing.min.js}"></script>
+  <script src="../ClientSide/lib/superfish/hoverIntent.js" th:href="@{/ClientSide/lib/superfish/hoverIntent.js}"></script>
+  <script src="../ClientSide/lib/superfish/superfish.min.js" th:href="@{/ClientSide/lib/superfish/superfish.min.js}"></script>
+  <script src="../ClientSide/lib/wow/wow.min.js" th:href="@{/ClientSide/lib/wow/wow.min.js}"></script>
+  <script src="../ClientSide/lib/venobox/venobox.min.js" th:href="@{/ClientSide/lib/venobox/venobox.min.js}"></script>
+  <script src="../ClientSide/lib/owlcarousel/owl.carousel.min.js" th:href="@{/ClientSide/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+  <!-- Contact Form JavaScript File -->
+  <script src="../ClientSide/contactform/contactform.js" th:href="@{/ClientSide/contactform/contactform.js}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="../ClientSide/js/main.js" th:href="@{/ClientSide/js/main.js}"></script>
+</body>
+
+</html>
